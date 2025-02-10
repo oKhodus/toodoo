@@ -1,4 +1,5 @@
 HELP PANEL
+0. [-help] - print for you list of cmnds -> You are already here <--
 1. [add] - command which add task to data
 2. [rm] - command which remove task from data
 3. [showall] - command which show you the data storage with added tasks

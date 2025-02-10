@@ -2,21 +2,22 @@ import json
 
 
 def add_task(task):
+        # n = 2
+        # new_task = {task: n}
     try:
         with open("data.json", "r") as file:
             tasks = json.load(file)
-            # print(task)
-            tasks.append(task)
-            return task
+            if not isinstance(tasks, dict):
+                tasks = {}
+        tasks.update({task: 1})
+    except json.JSONDecodeError:
+        tasks = {}
 
-        
-        # n = 1
-        # new_task = {task: n}
+    tasks[task] = 1
+    
 
-        # with open("data.json", "w") as file:
-        #     json.dump(tasks, file, indent=4)
-    except Exception as e:
-        print("nea", e)
+    with open("data.json", "w") as file:
+        json.dump(tasks, file, indent=4)
     # return f"Task was added in data.json"
 
 
@@ -36,10 +37,14 @@ def rm_task(task):
 
 
 def sls():
-    with open("data.json", "r") as file:
-        # tasks = "\n".join(json.load(file))
-        tasks = json.load(file)
-        return f"\nList of tasks you need to do:\n\n{tasks}".upper()
+    # try:
+        with open("data.json", "r") as read_file:
+            # tasks = "\n".join(json.load(file))
+            return json.load(read_file)
+            # return f"\nList of tasks you need to do:\n\n{}".upper()
+
+    # except Exception as e:
+    #     print(e)
 
 def sdone():
     with open("data_done.json", "r") as file:
