@@ -5,26 +5,34 @@ from modules import *
 
 
 def main():
-    todo_cmd = sys.argv[1]
-    if len(sys.argv) > 1:
-        todo_task = " ".join(sys.argv[2:])
+    try:
+        todo_cmd = sys.argv[1]
+        if len(sys.argv) > 1:
+            todo_task = " ".join(sys.argv[2:])
+        else:
+            raise Exception
 
-    correct_cmds = ["-help", "add", "rm", "upd", "sls", "sls/d", "sls/p"]
+        cmds_ls = ["-help", "add", "rm", "upd", "showall", "showdone", "sls/p"]
 
-    if todo_cmd in correct_cmds:
-        print(f"your cmd was [{todo_cmd}]../../\n")
-        if todo_cmd == "add":
-            print(add_task(todo_task))
-        elif todo_cmd == "rm":
-            print(rm_task(todo_task))
-        elif todo_cmd == "sls":
-            print(sls())
-        elif todo_cmd == "-help":
-            print(help())
-    else:
-        print(
-            "Your command doesn't exists.\nType [-help] to check list of correct commands."
-        )
+        implement = {
+            "-help": help(cmds_ls),
+            "add": add_task(todo_task),
+            "rm": rm_task(todo_task),
+            "showall": sls(),
+            "showdone": sdone(),
+            "shownow": snow()
+        }
+
+        if todo_cmd in implement:
+            print(f"Process of command: [{todo_cmd}]../../\n{implement[todo_cmd]}")
+
+        else:
+            print(
+                "Your command doesn't exists.\nType command [-help] to check list of correct commands."
+            )
+            raise Exception
+    except Exception:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

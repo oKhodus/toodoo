@@ -1,4 +1,6 @@
 HELP PANEL
 1. [add] - command which add task to data
 2. [rm] - command which remove task from data
-3. [sls] - command which show you added tasks to data 
+3. [showall] - command which show you the data storage with added tasks
+4. [showdone] - command which show you the data storage with completed tasks
+5. [shownow] - command which show you the data storage with tasks in progress
