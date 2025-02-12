@@ -1,3 +1,10 @@
 {
-    "newtaskowner": 1
+    "task_1": {
+        "name": "create new goal",
+        "number": 1
+    },
+    "task_2": {
+        "name": "create new proj",
+        "number": 2
+    }
 }

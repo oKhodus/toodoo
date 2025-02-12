@@ -2,23 +2,21 @@ import json
 
 
 def add_task(task):
-        # n = 2
-        # new_task = {task: n}
     try:
         with open("data.json", "r") as file:
             tasks = json.load(file)
             if not isinstance(tasks, dict):
                 tasks = {}
-        tasks.update({task: 1})
     except json.JSONDecodeError:
         tasks = {}
 
-    tasks[task] = 1
-    
+    number = len(tasks) + 1
+    name_key = f"task_{number}"
+    tasks[name_key] = {"name": task, "number": number}
 
     with open("data.json", "w") as file:
         json.dump(tasks, file, indent=4)
-    # return f"Task was added in data.json"
+    return f"Task was added in data.json"
 
 
 def rm_task(task):
@@ -37,20 +35,20 @@ def rm_task(task):
 
 
 def sls():
-    # try:
-        with open("data.json", "r") as read_file:
-            # tasks = "\n".join(json.load(file))
-            return json.load(read_file)
-            # return f"\nList of tasks you need to do:\n\n{}".upper()
+    with open("data.json", "r") as read_file:
+        file = json.load(read_file)
+        ls = ''
+        for task_name in file:
+            ls += f"{file[task_name]["number"]}. {file[task_name]["name"]}\n"
+        return f"\nList of tasks you need to do:\n{ls}".upper()
 
-    # except Exception as e:
-    #     print(e)
 
 def sdone():
     with open("data_done.json", "r") as file:
         tasks = "\n".join(json.load(file))
         return f"\nList of tasks you've done:\n\n{tasks}".upper()
-    
+
+
 def snow():
     with open("data_inprogress.json", "r") as file:
         tasks = "\n".join(json.load(file))
@@ -59,4 +57,4 @@ def snow():
 
 def help(cmds_ls):
     with open("help_doc.txt", "r") as file:
-        return f"{file.read()}\nCheck full list of cmds:\n{cmds_ls}"
+        return f"\n{file.read()}\nCheck full list of cmds:\n{cmds_ls}"
