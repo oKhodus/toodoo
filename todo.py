@@ -11,15 +11,16 @@ def main():
         else:
             raise Exception
 
-        cmds_ls = ["-help", "add", "rm", "upd", "showall", "showdone", "shownow"]
+        cmds_ls = ["-help", "-add", "-rm", "-upd", "-showall", "-showdone", "-shownow", "-done"]
 
         implement = {
             "-help": lambda: help(cmds_ls),
-            "add": lambda: add_task(todo_task) if todo_task else "Error: No task provided!",
-            "rm": lambda: rm_task(todo_task) if todo_task else "Error: No task provided!",
-            "showall": sls,
-            "showdone": sdone,
-            "shownow": snow
+            "-add": lambda: add_task(todo_task) if todo_task else "Error: No task provided!",
+            "-rm": lambda: rm_task(todo_task) if todo_task else "Error: No task provided!",
+            "-showall": sls,
+            "-showdone": sdone,
+            "-shownow": snow,
+            "-done": lambda: make_done(todo_task) if todo_task else "Error: No task provided!",
         }
 
         if todo_cmd in implement:

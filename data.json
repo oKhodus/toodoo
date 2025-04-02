@@ -6,5 +6,9 @@
     "task_2": {
         "name": "create new proj",
         "number": 2
+    },
+    "task_3": {
+        "name": "buy new jeans",
+        "number": 3
     }
 }
